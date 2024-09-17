@@ -25,7 +25,7 @@ export default function Login() {
   useEffect(() => {
     if (token != "") {
       setTimeout(() => {
-        router.push("");
+        router.push("/");
       }, 100);
     }
   }, [token]);
@@ -115,7 +115,7 @@ export default function Login() {
                 </Typography>
               )}
               <Typography sx={{ textAlign: "center", mt: "8px" }}>
-                Dont have an account? <Link href={"Register"}>Register</Link>
+                Dont have an account? <Link href={"/Register"}>Register</Link>
               </Typography>
             </Paper>
           </Container>

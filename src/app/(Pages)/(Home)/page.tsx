@@ -17,7 +17,7 @@ export default function Home() {
   console.log(localStorage.getItem("token"));
 
   if (!localStorage.getItem("token")) {
-    router.push("Login");
+    router.push("/Login");
   }
   useEffect(() => {
     dispatch(getPosts(50));

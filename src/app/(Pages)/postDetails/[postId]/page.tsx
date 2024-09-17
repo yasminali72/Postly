@@ -22,7 +22,7 @@ dispatch(getSinglePost(postId))
   
   if(singlePost ==null){
     return <div style={{height:'100vh',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-       <Button variant="contained" onClick={()=>router.push('/')} sx={{textTransform:'capitalize',}}>
+       <Button variant="contained" onClick={()=>router.push('')} sx={{textTransform:'capitalize',}}>
         <IconButton >
         <ArrowBackIcon sx={{color:'white'}}/>
         </IconButton>
@@ -38,7 +38,7 @@ dispatch(getSinglePost(postId))
     <title>Post Details</title>
    </head>
    <Container maxWidth='md'>
-      <Button variant="contained" onClick={()=>router.push('/')} sx={{textTransform:'capitalize'}}>
+      <Button variant="contained" onClick={()=>router.push('')} sx={{textTransform:'capitalize'}}>
         <IconButton >
         <ArrowBackIcon sx={{color:'white'}}/>
         </IconButton>

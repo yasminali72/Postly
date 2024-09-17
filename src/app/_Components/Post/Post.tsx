@@ -314,7 +314,7 @@ export default function Post({
       {!showAllComments && post.comments[1] && (
         <Typography
           variant="h6"
-          onClick={() => router.push("/postDetails/" + post._id)}
+          onClick={() => router.push("postDetails/" + post._id)}
           sx={{
             color: "blue",
             textAlign: "center",

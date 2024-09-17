@@ -65,7 +65,7 @@ export default function ChangePassword() {
           localStorage.setItem("token", data.token);
 
           setTimeout(() => {
-            router.push("/");
+            router.push("");
           }, 5000);
         }
       })

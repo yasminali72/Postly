@@ -38,12 +38,12 @@ export default function Nabar() {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-    router.push("/Profile");
+    router.push("Profile");
   };
   const handleLogout = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-    router.replace("/Login");
+    router.replace("Login");
     localStorage.removeItem("token");
   };
 
@@ -74,7 +74,7 @@ export default function Nabar() {
         onClick={() => {
           setAnchorEl(null);
           handleMobileMenuClose();
-          router.push("/ChangePassword");
+          router.push("ChangePassword");
         }}
       >
         Change Password
@@ -145,7 +145,7 @@ export default function Nabar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
             onClick={() => {
-              router.push("/");
+              router.push("");
             }}
           >
             <DynamicFeedIcon />
@@ -171,7 +171,7 @@ export default function Nabar() {
               size="large"
               aria-label="home"
               color="inherit"
-              onClick={() => router.push("/")}
+              onClick={() => router.push("")}
             >
               <Badge color="error">
                 <HomeIcon />

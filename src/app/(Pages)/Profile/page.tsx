@@ -43,7 +43,7 @@ export default function Profile() {
   console.log(dataUser);
 
   if (!localStorage.getItem("token")) {
-    router.push("/Login");
+    router.push("Login");
   }
   useEffect(() => {
     dispatch(getUser());

@@ -48,7 +48,7 @@ export default function Register() {
         setErrorMsg("");
         setSucessMsg(data.message);
         setTimeout(() => {
-          router.push("/Login");
+          router.push("Login");
         }, 500);
       })
       .catch(({ response }) => {

@@ -6,6 +6,13 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Provider } from "react-redux";
 import { store } from "@/lib/store";
 
+export const metadata = {
+  title: "Postly",
+  description: "Express yourself freely!",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
 
 export default function RootLayout({
   children,

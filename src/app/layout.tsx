@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" href="/favicon.png" type="image/png" />
+      <link rel="icon" href="/fav.png" type="image/png" />
       <body>
         <Provider store={store}>
           <AppRouterCacheProvider>

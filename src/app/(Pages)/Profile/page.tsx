@@ -39,13 +39,22 @@ export default function Profile() {
     isLoading,
   }: { dataUser: User; userPosts: PostInterface[]; isLoading: boolean } =
     useSelector((state: RootState) => state.auth); // Correctly access `dataUser`
-  const { user }: any = jwtDecode(localStorage.getItem("token") ?? "");
+  const [user, setUser] = useState<any>(null);
 
- 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      router.push("/Login");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const decoded: any = jwtDecode(token);
+        setUser(decoded.user);
+      }
+      if (!localStorage.getItem("token")) {
+        router.push("/Login");
+      }
     }
+  }, []);
+
+  useEffect(() => {
     dispatch(getUser());
     dispatch(getUserPosts(user));
   }, [dispatch]);

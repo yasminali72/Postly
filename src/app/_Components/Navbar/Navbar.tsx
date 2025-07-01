@@ -18,7 +18,6 @@ import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 
 export default function Nabar() {
   const router = useRouter();
-  let token = localStorage.getItem("token");
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =

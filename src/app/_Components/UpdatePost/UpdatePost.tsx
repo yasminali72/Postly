@@ -7,7 +7,7 @@ import {
   IconButton,
   CircularProgress,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import { getPosts, getSinglePost } from "@/lib/Slices/postsSlice";
@@ -26,15 +26,21 @@ export default function UpdatePost({
   setShowUpdatePost: any;
   imagePost: any;
 }) {
-  console.log(postId);
-  console.log(localStorage.getItem("token"));
-
   const [newBodyPost, setNewBodyPost] = useState(bodyPost);
   const [image, setImage] = useState(null);
   const [newImageSrc, setNewImageSrc] = useState(imagePost);
   const [isLoading, setIsLoading] = useState(false);
-  const { user }: any = jwtDecode(localStorage.getItem("token") ?? "");
+  const [user, setUser] = useState<any>(null);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const decoded: any = jwtDecode(token);
+        setUser(decoded.user);
+      }
+    }
+  }, []);
   const dispatch = useDispatch<appDispatch>();
   useSelector((state: RootState) => state.posts);
 

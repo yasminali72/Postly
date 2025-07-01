@@ -5,7 +5,7 @@ import { red } from "@mui/material/colors";
 import Image from "next/image";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getPosts, getSinglePost } from "@/lib/Slices/postsSlice";
 import { appDispatch } from "@/lib/store";
 import { useDispatch } from "react-redux";
@@ -25,8 +25,17 @@ export default function UpdateComment({
 }) {
   const [comment, setComment] = useState(bodyComment);
   const [isError, setIsError] = useState("");
-  const { user }: any = jwtDecode(localStorage.getItem("token") ?? "");
+  const [user, setUser] = useState<any>(null)
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token")
+      if (token) {
+        const decoded: any = jwtDecode(token)
+        setUser(decoded.user)
+      }
+    }
+  }, [])
   const dispatch = useDispatch<appDispatch>();
 
   async function updateComment(e: any) {

@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Box, Stack, TextField, Typography } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getPosts, getSinglePost } from "@/lib/Slices/postsSlice";
 import { RootState, appDispatch } from "@/lib/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,8 +17,17 @@ import { getUserPosts } from "@/lib/Slices/AuthSlice";
 export default function CreateComment({ postId }: { postId: string }) {
   const [comment, setComment] = useState("");
   const [isError, setIsError] = useState("");
-  const { user }: any = jwtDecode(localStorage.getItem("token") ?? "");
+  const [user, setUser] = useState<any>(null);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const decoded: any = jwtDecode(token);
+        setUser(decoded.user);
+      }
+    }
+  }, []);
   const dispatch = useDispatch<appDispatch>();
   let { singlePost, posts } = useSelector((state: RootState) => state.posts);
 

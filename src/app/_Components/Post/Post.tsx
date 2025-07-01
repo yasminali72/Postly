@@ -44,8 +44,17 @@ export default function Post({
   const [commentId, setCommentId] = React.useState("");
   const [bodyComment, setBodyComment] = React.useState("");
   const router = useRouter();
-  const { user }: any = jwtDecode(localStorage.getItem("token") ?? "");
+  const [user, setUser] = React.useState<any>(null);
 
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const decoded: any = jwtDecode(token);
+        setUser(decoded.user);
+      }
+    }
+  }, []);
   const dispatch = useDispatch<appDispatch>();
   let { singlePost } = useSelector((state: RootState) => state.posts);
   const [postMenuAnchorEl, setPostMenuAnchorEl] =
@@ -64,8 +73,6 @@ export default function Post({
 
   // delete comment
   async function deleteComment(commentId: string) {
-    console.log(localStorage.getItem("token"));
-
     console.log(commentId);
     let { data } = await axios.delete(
       `https://linked-posts.routemisr.com/comments/${commentId}`,

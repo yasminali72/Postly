@@ -53,7 +53,6 @@ export default function Login() {
     <>
       <head>
         <title>Login</title>
-        <link rel="icon" href="/fav.png" type="image/png" />
       </head>
       <form onSubmit={handleSubmit}>
         <FormControl

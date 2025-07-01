@@ -6,14 +6,6 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Provider } from "react-redux";
 import { store } from "@/lib/store";
 
-export const metadata = {
-  title: "Postly",
-  description: "Express yourself freely!",
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,15 +13,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body >
+      <link rel="icon" href="/favicon.png" type="image/png" />
+      <body>
         <Provider store={store}>
           <AppRouterCacheProvider>
-              <Navbar />
-              <div style={{ minHeight: "100vh", marginTop: "80px" }}>
-                {children}
-              </div>
+            <Navbar />
+            <div style={{ minHeight: "100vh", marginTop: "80px" }}>
+              {children}
+            </div>
 
-              <Footer />
+            <Footer />
           </AppRouterCacheProvider>
         </Provider>
       </body>

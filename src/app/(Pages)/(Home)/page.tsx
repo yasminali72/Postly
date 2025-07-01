@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreatePost from "@/app/_Components/CreatePost/CreatePost";
 import { useRouter } from "next/navigation";
+
+
 export default function Home() {
   const dispatch = useDispatch<appDispatch>();
   let { posts, isLoading }: { posts: PostInterface[]; isLoading: boolean } =
@@ -33,8 +35,9 @@ export default function Home() {
 
   return (
     <>
-      <head>
+     <head>
         <title>Postly</title>
+        <meta name="description" content="Express yourself freely!" />
       </head>
       <Container
         maxWidth="md"

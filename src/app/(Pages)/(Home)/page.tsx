@@ -14,12 +14,12 @@ export default function Home() {
   let { posts, isLoading }: { posts: PostInterface[]; isLoading: boolean } =
     useSelector((state: RootState) => state.posts);
   const router = useRouter();
-  console.log(localStorage.getItem("token"));
 
-  if (!localStorage.getItem("token")) {
-    router.push("/Login");
-  }
+  
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      router.push("/Login");
+    }
     dispatch(getPosts(50));
   }, []);
 

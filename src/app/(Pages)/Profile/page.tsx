@@ -40,12 +40,12 @@ export default function Profile() {
   }: { dataUser: User; userPosts: PostInterface[]; isLoading: boolean } =
     useSelector((state: RootState) => state.auth); // Correctly access `dataUser`
   const { user }: any = jwtDecode(localStorage.getItem("token") ?? "");
-  console.log(dataUser);
 
-  if (!localStorage.getItem("token")) {
-    router.push("/Login");
-  }
+ 
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      router.push("/Login");
+    }
     dispatch(getUser());
     dispatch(getUserPosts(user));
   }, [dispatch]);

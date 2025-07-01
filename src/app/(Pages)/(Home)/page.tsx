@@ -5,7 +5,7 @@ import Post from "@/app/_Components/Post/Post";
 import { getPosts } from "@/lib/Slices/postsSlice";
 import { RootState, appDispatch } from "@/lib/store";
 import { Container } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreatePost from "@/app/_Components/CreatePost/CreatePost";
 import { useRouter } from "next/navigation";
@@ -15,13 +15,21 @@ export default function Home() {
     useSelector((state: RootState) => state.posts);
   const router = useRouter();
 
-  
+  const [checkingAuth, setCheckingAuth] = useState(true);
+
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
+    const token = localStorage.getItem("token");
+    if (!token) {
       router.push("/Login");
+    } else {
+      setCheckingAuth(false);
     }
+  }, [router]);
+
+  useEffect(() => {
     dispatch(getPosts(50));
-  }, []);
+  }, [dispatch]);
+  if (checkingAuth) return <Loading />;
 
   return (
     <>

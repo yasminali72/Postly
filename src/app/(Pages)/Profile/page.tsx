@@ -38,8 +38,10 @@ export default function Profile() {
     userPosts,
     isLoading,
   }: { dataUser: User; userPosts: PostInterface[]; isLoading: boolean } =
-    useSelector((state: RootState) => state.auth); // Correctly access `dataUser`
+    useSelector((state: RootState) => state.auth);
+
   const [user, setUser] = useState<any>(null);
+  const [checkingAuth, setCheckingAuth] = useState(true); // <-- جديد
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -47,8 +49,8 @@ export default function Profile() {
       if (token) {
         const decoded: any = jwtDecode(token);
         setUser(decoded.user);
-      }
-      if (!localStorage.getItem("token")) {
+        setCheckingAuth(false); // انتهى التحقق
+      } else {
         router.push("/Login");
       }
     }
@@ -58,6 +60,10 @@ export default function Profile() {
     dispatch(getUser());
     dispatch(getUserPosts(user));
   }, [dispatch]);
+
+  if (checkingAuth) {
+    return null; // أو return <LoadingSpinner />
+  }
 
   async function updatePhoto(e: any) {
     e.preventDefault(); //prevent reload when submit
